@@ -6,3 +6,11 @@ title.addEventListener('click', () => {
 
 
 })
+
+fetch("http://localhost:3000/api/v1/customers")
+    .then(response => response.json())
+    .then(customers => {
+        console.log(customers)
+       
+        customersArray = customers
+    })

@@ -9,14 +9,7 @@ title.addEventListener('click', () => {
 
 })
 
-fetch("http://localhost:3000/customers")
-    .then(response => response.json())
-    .then(customers => {
-        
-       
-        customersArray = customers
-       console.log(customersArray) 
-    })
+
 
     fetch("http://localhost:3000/pizzas")
     .then(response => response.json())
@@ -25,6 +18,12 @@ fetch("http://localhost:3000/customers")
             li = document.createElement('li')
             li.innerText += `${pizza.name}, ${pizza.description}, ${pizza.price}`
             ul.append(li)
+            img = document.createElement('img')
+            console.log(img)
+            img.setAtr
+        //     img.innerHTML += `<img src= ${pizza.img_url}>`
+        //     console.log(pizza.image_url)
+        //     li.innerHTML += img
         })
         console.log(pizzas)
             

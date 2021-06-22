@@ -1,3 +1,5 @@
+const ul = document.getElementById('menu')
+
 const title = document.getElementById('title');
 title.addEventListener('click', () => {
     sample = document.createElement('p')
@@ -10,7 +12,22 @@ title.addEventListener('click', () => {
 fetch("http://localhost:3000/customers")
     .then(response => response.json())
     .then(customers => {
-        console.log(customers)
+        
        
         customersArray = customers
+       console.log(customersArray) 
     })
+
+    fetch("http://localhost:3000/pizzas")
+    .then(response => response.json())
+    .then(pizzas => {
+        pizzas.map((pizza) =>{
+            li = document.createElement('li')
+            li.innerText += `${pizza.name}, ${pizza.description}, ${pizza.price}`
+            ul.append(li)
+        })
+        console.log(pizzas)
+            
+        })
+
+    

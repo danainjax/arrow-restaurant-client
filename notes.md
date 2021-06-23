@@ -1,5 +1,5 @@
 BUILD NOTES
--[ ] Render all the Pizzas (menuu) to the DOM
+-[ ] Render all the Pizzas (menu) to the DOM
 -[ ] Make sure the images come through on the Pizzas
 -[ ] Spend 1 - 2 hours on basic design of the page
 -[ ] Build out your classes in JS, review this

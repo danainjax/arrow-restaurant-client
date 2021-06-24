@@ -9,9 +9,7 @@ title.addEventListener('click', () => {
 
 })
 
-
-
-    fetch("http://localhost:3000/pizzas")
+    fetch("http://localhost:3000/api/v1/pizzas")
     .then(response => response.json())
     .then(pizzas => {
         pizzas.map((pizza) =>{

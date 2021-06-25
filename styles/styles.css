@@ -5,10 +5,10 @@
 .jumbotron{
     margin-top: 20px;
     background-image: url('/images/frank.jpeg');
+    /* background-image: url('/images/check.png'); */
     background-size: 350px;
     position: center;
     background-repeat: no-repeat;
-    text-align: right;
-    color: black;
+    text-align: center;
     
 }

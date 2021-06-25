@@ -1,0 +1,14 @@
+/* h1 {background-image: url('/images/peperoni.jpeg');
+
+} */
+
+.jumbotron{
+    margin-top: 20px;
+    background-image: url('/images/frank.jpeg');
+    background-size: 350px;
+    position: center;
+    background-repeat: no-repeat;
+    text-align: right;
+    color: black;
+    
+}

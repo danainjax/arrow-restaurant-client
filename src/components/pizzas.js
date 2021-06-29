@@ -31,7 +31,7 @@ class Pizzas {
                     </div>
                     <div class="card-footer">
                         <small class="text-muted">${pizza.price}</small>
-                        <a id="order-bttn" class="btn btn-primary btn-lg" href="#" role="button" position="right">Order</a>
+                        <a id="order-bttn" data-id="${pizza.id}" class="btn btn-primary btn-lg" href="#" role="button" position="right">Order</a>
                     </div>
                  </div>   
             </div>

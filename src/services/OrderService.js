@@ -1,26 +1,13 @@
+class OrderService {
+constructor(order_id) {
+    //take the order id in the params and interpolate it into the base_url
+    this.baseUrl = `http://localhost:3000/api/v1/orders/${order_id}`;
+  }
 
-
-
-
-const bttn = document.getElementById('menu-bttn');
-bttn.addEventListener('click', () => {
-    const app = new App();
-    opener = document.getElementById('opener')
-    opener.innerHTML = " "
-    opener.outerHTML = " "
-    
-
-})
-
-
-// fetch("http://localhost:3000/api/v1/orders/1")
-//       .then((res) => res.json())
-//         .then((order) => {
-//             (console.log(order))
-            
-//             console.log(this)
-//       })
-      
+  getOrder() {
+    return fetch(this.baseUrl)
+      .then((res) => res.json())
+    //   .then((pizzas) => {(console.log(pizzas))
         // pizzas.map((pizza) => {
         //   li = document.createElement("li");
         //   li.innerText += `${pizza.name}, ${pizza.description}, ${pizza.price}`;
@@ -33,5 +20,5 @@ bttn.addEventListener('click', () => {
         //   //     li.innerHTML += img
     //     });
     //   });
-
-    
+  }
+}

@@ -2,7 +2,6 @@ class Pizzas {
   constructor() {
     this.pizzas = [];
     this.service = new PizzasService();
-    // this.bindEventListeners()
     this.fetchAndLoadPizzas();
   }
 
@@ -45,7 +44,7 @@ class Pizzas {
 
     pizzaMenu.innerHTML = pizzaCards;
     console.log(pizzaCards);
-    // pizzaMenu.innerHTML = this.pizzas.map(pizza=> `<li>${pizza.name}, ${pizza.description}, ${pizza.price}</li>`).join('')
+
     console.log("my pizzas are", this.pizzas);
 
     const orderBttns = document.querySelectorAll("#order");

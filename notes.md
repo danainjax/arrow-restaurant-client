@@ -1,18 +1,20 @@
 BUILD NOTES
--[ ] Render all the Pizzas (menu) to the DOM
--[ ] Make sure the images come through on the Pizzas
--[ ] Spend 1 - 2 hours on basic design of the page
--[ ] Build out your classes in JS, review this
+-[X] Render all the Pizzas (menu) to the DOM
+-[X] Make sure the images come through on the Pizzas
+
 
 # MVP
 
-1. - [ ] The application must be an HTML, CSS, and JavaScript frontend with a Rails API backend. All interactions between the client and the server must be handled asynchronously (AJAX) and use JSON as the communication format.
+1. - [X] The application must be an HTML, CSS, and JavaScript frontend with a Rails API backend. All interactions between the client and the server must be handled asynchronously (AJAX) and use JSON as the communication format.
 
-2. - [ ] The JavaScript application must use Object Oriented JavaScript (classes) to encapsulate related data and behavior.
+2. - [X] The JavaScript application must use Object Oriented JavaScript (classes) to encapsulate related data and behavior.
 
 3. - [X] The domain model served by the Rails backend must include a resource with at least one has-many relationship. For example, if you were building an Instagram clone, you might display a list of photos with associated comments. (Pizza has_many :pizza_orders & has_many :orders, through: :pizza_orders, Order has_many :pizza_orders & has_many :pizzas, through: pizza_orders) 
 
 4. - [ ] The backend and frontend must collaborate to demonstrate Client-Server Communication. Your application should have at least 3 AJAX calls, covering at least 2 of Create, Read, Update, and Delete (CRUD). Your client-side JavaScript code must use fetch with the appropriate HTTP verb, and your Rails API should use RESTful conventions.
+- [X] GET request to get all the PIZZAS
+- [ ] POST request to create an ORDER
+- [ ] DELETE request to CANCEL an ORDER
 
 # BEST PRACTICES
 #### JavaScript

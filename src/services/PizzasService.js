@@ -1,9 +1,0 @@
-class PizzasService {
-  constructor() {
-    this.baseUrl = "http://localhost:3000/api/v1/pizzas";
-  }
-
-  getPizzas() {
-    return fetch(this.baseUrl).then((res) => res.json());
-  }
-}

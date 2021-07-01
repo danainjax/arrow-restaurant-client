@@ -20,26 +20,42 @@ class Pizzas {
     
     render() {
         const pizzaMenu = document.getElementById('pizza-menu')
-        let pizzasCard = this.pizzas.map(pizza=>   
+        let pizzaCards = this.pizzas.map(pizza=>   
         `
             <div class="col mb-6">
                 <div class="card">
                     <img src=${pizza.image_url} class="card-img-top" alt="pizza menu item">
                     <div class="card-body">
-                        <h5 class="card-title">${pizza.name}</h5>
+                        <h5 data-id="${pizza.name}" class="card-title">${pizza.name}</h5>
                         <p class="card-text">${pizza.description}</p>
                     </div>
                     <div class="card-footer">
                         <small class="text-muted">${pizza.price}</small>
-                        <a id="order-bttn" data-id="${pizza.id}" class="btn btn-primary btn-lg" href="#" role="button" position="right">Order</a>
+                        
+                        <button type="button" id="order" data-id="${pizza.id}" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                                Order
+                        </button>
                     </div>
                  </div>   
             </div>
         </div>`).join('')
         
-        pizzaMenu.innerHTML = pizzasCard
-        console.log(pizzasCard)
+        pizzaMenu.innerHTML = pizzaCards
+        console.log(pizzaCards)
         // pizzaMenu.innerHTML = this.pizzas.map(pizza=> `<li>${pizza.name}, ${pizza.description}, ${pizza.price}</li>`).join('')
         console.log('my pizzas are', this.pizzas)
+
+        const orderBttns = document.querySelectorAll('#order')
+       
+        orderBttns.forEach(btn => btn.addEventListener('click', Order.buttonHandler))
+        orderBttns.forEach(btn =>console.log(btn.getAttribute('data-id')))
+       
+        console.log('here are the buttons', orderBttns)
+        // orderBttns.addEventListener('click', Order.buttonHandler)
+        
+
+        
     }
+
+    
 }

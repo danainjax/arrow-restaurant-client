@@ -1,6 +1,10 @@
 BUILD NOTES
 -[X] Render all the Pizzas (menu) to the DOM
 -[X] Make sure the images come through on the Pizzas
+-[ ] Create an order object on the front end and send it to the back end
+-[ ] Get the created order from the back-end and display it on the front end
+-[ ] Add the functionality to cancel an order.
+
 
 
 # MVP
@@ -14,6 +18,7 @@ BUILD NOTES
 4. - [ ] The backend and frontend must collaborate to demonstrate Client-Server Communication. Your application should have at least 3 AJAX calls, covering at least 2 of Create, Read, Update, and Delete (CRUD). Your client-side JavaScript code must use fetch with the appropriate HTTP verb, and your Rails API should use RESTful conventions.
 - [X] GET request to get all the PIZZAS
 - [ ] POST request to create an ORDER
+- [ ] GET request to retrieve the ORDER
 - [ ] DELETE request to CANCEL an ORDER
 
 # BEST PRACTICES

@@ -88,9 +88,9 @@ class Order {
           <center>
             <form id="create-order" name="input" action="#" method="post">
             <h1 class="order-form">Order</h1>
-            First name: <input type="text" name="firstname" placeholder="John"><br/>
-            Last name: <input type="text" name="lastname" placeholder="Smith"><br/>
-            Address:<input type="email" name="email" placeholder="1234 Street City, ST Zip">
+            Name: <input type="text" name="name" placeholder="Paul Hollywood"><br/>
+            Email <input type="text" name="email" placeholder="BritishBaker.1@gmail.com"><br/>
+            Phone:<input type="phone" name="phone" placeholder="904-555-2210">
           <br/>
             <p>
             </p>
@@ -118,9 +118,29 @@ class Order {
       cardContainer.appendChild(card);
       pizzamenu.remove();
     }
+
+   const pizzaOrderForm = document.querySelector("#create-order");
+   console.log(pizzaOrderForm)
+   pizzaOrderForm.addEventListener('submit', (e)=> {
+    e.preventDefault();
+    
+    let name = e.target.name.value
+    let email = e.target.email.value
+    let phone = e.target.phone.value
+
+    console.log(name, email, phone)
+   })
+   
+    
   }
 
-  static createOrder() {
-    document.getElementById("form");
-  }
+     
+  
+    
+    // 
+  
+  
+    
+  
+  
 }

@@ -8,6 +8,7 @@ const pizzamenu = document.getElementById('pizza-menu')
 
 
 
+
 const bttn = document.getElementById('menu-bttn');
 bttn.addEventListener('click', () => {
     pizzaService.fetchAndLoadPizzas()

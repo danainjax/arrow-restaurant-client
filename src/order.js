@@ -12,8 +12,7 @@ class Order {
   }
 
   addSubTotal = function () {
-    let prices = this.pizzas.map((pizza) => pizza.price);
-    console.log(prices);
+    let prices = this.pizzas.map((pizza) => pizza.price); 
     if (prices.length === 0) {
       return "0.00";
     } else {

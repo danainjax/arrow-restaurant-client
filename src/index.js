@@ -4,7 +4,7 @@ const baseURL= "http://localhost:3000/api/v1"
 const pizzaService = new PizzaService()
 const orderService = new OrderService()
 const order_container = document.getElementById('order-container')
-const pizzamenu = document.getElementById('pizza-menu')
+const pizzaMenu = document.getElementById('pizza-menu')
 
 
 
@@ -15,8 +15,6 @@ bttn.addEventListener('click', () => {
     orderService.fetchAndLoadOrders()
     opener = document.getElementById('opener')
     opener.remove()
-    
-
 })
 
 

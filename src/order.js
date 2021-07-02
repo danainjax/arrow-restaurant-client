@@ -6,12 +6,13 @@ class Order {
     this.phone = order.phone;
     this.pizza_ids = order.pizza_ids;
     this.pizzas = order.pizzas;
+    this.order_items = [];
     this.sub_total = this.addSubTotal();
     this.tax = this.computeTax();
     this.total = this.totalPrice();
   }
 
-  addSubTotal = function () {
+  addSubTotal() {
     let prices = this.pizzas.map((pizza) => pizza.price); 
     if (prices.length === 0) {
       return "0.00";
@@ -21,11 +22,11 @@ class Order {
     }
   };
 
-  computeTax = function () {
+  computeTax() {
     return (this.sub_total * 0.07).toFixed(2);
   };
 
-  totalPrice = function () {
+  totalPrice() {
     let prices = this.pizzas.map((pizza) => pizza.price);
     if (prices.length === 0) {
       return 0.0;
@@ -49,7 +50,7 @@ class Order {
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel"> </h5>
+              <h4 class="modal-title" id="exampleModalLabel">Pizza Cart</h4>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
@@ -71,12 +72,12 @@ class Order {
       </div>`;
 
     document.body.append(addPizza);
-
+    
     const addToOrderButton = document.getElementById("create");
 
     addToOrderButton.addEventListener("submit", handleAdd());
 
-    function handleAdd(event) {
+     function handleAdd(event) {
       const cardContainer = document.getElementById("card-container");
       let card = document.createElement("card");
       const orderForm = document.createElement("div");
@@ -105,18 +106,15 @@ class Order {
           </form>
         </center>
       </div>
-  </div>
-  
-
-
-      `;
-      document.body.append(orderForm);
+  </div>`;
+      pizzaMenu.append(orderForm);
       console.log(order_container);
+      console.log('pizza_id', pizza_id)
       Order.all.push(pizza_id);
       card.innerHTML += `<h1>${pizza_id}</h1>`;
       addToOrderButton.remove();
       cardContainer.appendChild(card);
-      pizzamenu.remove();
+      // pizzamenu.remove();
     }
 
    const pizzaOrderForm = document.querySelector("#create-order");
@@ -129,6 +127,8 @@ class Order {
     let phone = e.target.phone.value
 
     console.log(name, email, phone)
+    // pizzaOrderForm.remove()
+    
    })
    
     
@@ -144,3 +144,19 @@ class Order {
   
   
 }
+
+
+class Student{
+  static all = []
+
+  sayHello() { //instance method
+    const name = "aysan"
+    name = "Dana"
+  }
+
+  static classMethod(){ //class Method 
+
+  }
+
+}
+

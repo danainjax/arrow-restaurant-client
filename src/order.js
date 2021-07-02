@@ -39,18 +39,18 @@ class Order {
 
   render() {
     console.log(this);
+    //write the code to create an element to display the order and add to the DOM
   }
 
   static buttonHandler(event) {
     let addPizza = document.createElement("div");
     let pizza_id = event.target.dataset.id;
     //now I have the pizza_id, but how to get the Pizza it refers to?
-    //now write the code to add the pizza_id to the pizza_ids array for the order, you've got this
     addPizza.innerHTML = `<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Add Pizza</h5>
+              <h5 class="modal-title" id="exampleModalLabel"> </h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
@@ -80,6 +80,27 @@ class Order {
     function handleAdd(event) {
       const cardContainer = document.getElementById("card-container");
       let card = document.createElement("card");
+      const orderForm = document.createElement("form");
+      orderForm.innerHTML = `
+      <div id="wrapper">
+      <div id="inputs">
+      <center><form name="input" action="#" method="post">
+        <h1>Order</h1>
+      First name: <input type="text" name="firstname" placeholder="John"><br/>
+      Last name: <input type="text" name="lastname" placeholder="Smith"><br/>
+      Address:<input type="email" name="email" placeholder="1234 Street City, ST Zip">
+     <br/>
+        <p>Special Instructions:</br></p>
+        <textarea></textarea>
+        <p></p>
+      <input type="submit" value="Submit" href="#">
+    </form>
+    </div>
+
+
+      `;
+      order_container.append(orderForm);
+      console.log(order_container)
       Order.all.push(pizza_id);
       card.innerHTML += `<h1>${pizza_id}</h1>`;
       addToOrderButton.remove();

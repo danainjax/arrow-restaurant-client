@@ -1,19 +1,20 @@
 class Order {
   // static orderForm = document.getElementById('order-form-container')
-  static pizza_ids = [];
+  static all = [];
   constructor(order) {
     this.name = order.name;
     this.email = order.email;
     this.phone = order.phone;
     this.pizza_ids = order.pizza_ids;
+    this.pizzas = order.pizzas
     // this.sub_total = function () {
     //     grab the pizza_ids and from that grab the pizza object and get it's price. add the prices together to get the subtotal}
     // this.tax = sub_total * tax percentage for CT
     // this.total = sub_total + tax
   }
-
+  
   render() {
-    console.log(this.email);
+    console.log(this);
   }
 
   static buttonHandler(event) {
@@ -39,7 +40,7 @@ class Order {
             </form>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Select another pizza to order</button>
               
             </div>
           </div>
@@ -55,7 +56,7 @@ class Order {
     function handleAdd(event) {
       const cardContainer = document.getElementById("card-container");
       let card = document.createElement("card");
-      Order.pizza_ids.push(pizza_id);
+      Order.all.push(pizza_id);
       card.innerHTML += `<h1>${pizza_id}</h1>`;
       addToOrderButton.remove();
       cardContainer.appendChild(card);

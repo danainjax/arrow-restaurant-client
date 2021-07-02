@@ -5,10 +5,15 @@ class OrderService {
 
   fetchAndLoadOrders() {
     this.getOrders().then((orders) => {
-      orders.forEach((order) => {
-        let o = new Order(order);
-        o.render();
-      });
+      console.log(orders.data)
+      orders.data.forEach((order)=> {
+        let o = new Order(order.attributes)
+        o.render()
+      })
+      // orders.forEach((order) => {
+      //   let o = new Order(order);
+      //   o.render();
+      // });
     });
   }
 

@@ -1,18 +1,42 @@
 class Order {
-  // static orderForm = document.getElementById('order-form-container')
   static all = [];
   constructor(order) {
     this.name = order.name;
     this.email = order.email;
     this.phone = order.phone;
     this.pizza_ids = order.pizza_ids;
-    this.pizzas = order.pizzas
-    // this.sub_total = function () {
-    //     grab the pizza_ids and from that grab the pizza object and get it's price. add the prices together to get the subtotal}
-    // this.tax = sub_total * tax percentage for CT
-    // this.total = sub_total + tax
+    this.pizzas = order.pizzas;
+    this.sub_total = this.addSubTotal();
+    this.tax = this.computeTax();
+    this.total = this.totalPrice();
   }
-  
+
+  addSubTotal = function () {
+    let prices = this.pizzas.map((pizza) => pizza.price);
+    console.log(prices);
+    if (prices.length === 0) {
+      return "0.00";
+    } else {
+      let sub = prices.reduce((total, price) => total + price);
+      return sub.toFixed(2);
+    }
+  };
+
+  computeTax = function () {
+    return (this.sub_total * 0.07).toFixed(2);
+  };
+
+  totalPrice = function () {
+    let prices = this.pizzas.map((pizza) => pizza.price);
+    if (prices.length === 0) {
+      return 0.0;
+    } else {
+      let sub = prices.reduce((total, price) => total + price);
+      let withTax = this.sub_total * 0.07;
+      return (sub + withTax).toFixed(2);
+    }
+  };
+
   render() {
     console.log(this);
   }

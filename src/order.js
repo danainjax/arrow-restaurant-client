@@ -80,31 +80,48 @@ class Order {
     function handleAdd(event) {
       const cardContainer = document.getElementById("card-container");
       let card = document.createElement("card");
-      const orderForm = document.createElement("form");
+      const orderForm = document.createElement("div");
       orderForm.innerHTML = `
-      <div id="wrapper">
+
+    <div id="wrapper">
       <div id="inputs">
-      <center><form name="input" action="#" method="post">
-        <h1>Order</h1>
-      First name: <input type="text" name="firstname" placeholder="John"><br/>
-      Last name: <input type="text" name="lastname" placeholder="Smith"><br/>
-      Address:<input type="email" name="email" placeholder="1234 Street City, ST Zip">
-     <br/>
-        <p>Special Instructions:</br></p>
-        <textarea></textarea>
-        <p></p>
-      <input type="submit" value="Submit" href="#">
-    </form>
-    </div>
+         <div>
+          <center>
+            <form id="create-order" name="input" action="#" method="post">
+            <h1 class="order-form">Order</h1>
+            First name: <input type="text" name="firstname" placeholder="John"><br/>
+            Last name: <input type="text" name="lastname" placeholder="Smith"><br/>
+            Address:<input type="email" name="email" placeholder="1234 Street City, ST Zip">
+          <br/>
+            <p>
+            </p>
+            <h3> Pizzas added to order </h3>
+            
+            <p> Show the pizza ordered here </p>
+           
+            <p>Comments:</br></p>
+            <textarea></textarea>
+            <p></p>
+            <input type="submit" value="Submit" href="#">
+          </form>
+        </center>
+      </div>
+  </div>
+  
 
 
       `;
-      order_container.append(orderForm);
-      console.log(order_container)
+      document.body.append(orderForm);
+      console.log(order_container);
       Order.all.push(pizza_id);
       card.innerHTML += `<h1>${pizza_id}</h1>`;
       addToOrderButton.remove();
       cardContainer.appendChild(card);
+      pizzamenu.remove();
     }
+  }
+
+  static createOrder() {
+    document.getElementById("form");
   }
 }

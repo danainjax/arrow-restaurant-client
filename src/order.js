@@ -10,6 +10,7 @@ class Order {
     this.sub_total = this.addSubTotal();
     this.tax = this.computeTax();
     this.total = this.totalPrice();
+    this.comments = order.comments
   }
 
   addSubTotal() {
@@ -43,7 +44,8 @@ class Order {
   }
 
   static addPizzaToCart(event) {
-    const cart = document.createElement("div");
+    let cart = document.createElement('div');
+    cart.id = "cart";
     cart.innerHTML = `<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">
@@ -62,7 +64,7 @@ class Order {
             </form>
             </div>
             <div class="modal-footer">
-              <button type="button" id="ready-to-place-order" class="btn btn-primary" input-type="submit">Ready to Place Order!</button>
+              <button type="button" id="ready-to-place-order" class="btn btn-primary" input type="submit" data-dismiss="modal">Ready to Place Order!</button>
               
             </div>
           </div>
@@ -78,14 +80,13 @@ class Order {
     cardContainer.appendChild(card);
     Order.all.push(pizza_id);
     const readyToPlaceOrder = document.getElementById("ready-to-place-order");
-    readyToPlaceOrder.addEventListener("click", (e) => {
-      console.log(
-        "you are ready to place an order!, send me to the renderOrderForm function"
-      );
-    });
+    readyToPlaceOrder.addEventListener('click', Order.renderOrderForm)
+    
   }
 
-  static renderOrderForm() {
+   static renderOrderForm() {
+    cart.innerHTML = " "
+    pizzaMenu.remove()
     const orderForm = document.createElement("div");
     orderForm.innerHTML = `
         <div id="wrapper">
@@ -105,29 +106,38 @@ class Order {
                 <p> Show the pizza ordered here </p>
                
                 <p>Comments:</br></p>
-                <textarea></textarea>
+                <input type="textarea" name="comments"></textarea>
                 <p></p>
                 <input type="submit" value="Submit" href="#">
               </form>
             </center>
           </div>
       </div>`;
-    pizzaMenu.append(orderForm);
-    console.log(order_container);
-    // addToOrderButton.remove();
-    // pizzamenu.remove();
+    document.body.append(orderForm);
+    
+    const pizzaOrderForm = document.querySelector("#create-order");
+ 
+    pizzaOrderForm.addEventListener('submit', (e)=> {
+      e.preventDefault();
+
+    let name = e.target.name.value
+    let email = e.target.email.value
+    let phone = e.target.phone.value
+    let comments = e.target.comments.value
+
+  console.log(name, email, phone, comments)
+  //create a new order object with the name, email, phone, and contents of pizza_ids array then you can send the post request to the database- call OrderService.something here...
+  pizzaOrderForm.remove()
+  //show order received message
+  
+    })
+    
   }
+
+ 
+
+ 
   
 }
 
-//  const pizzaOrderForm = document.querySelector("#create-order");
-//  console.log(pizzaOrderForm)
-//  pizzaOrderForm.addEventListener('submit', (e)=> {
-//   e.preventDefault();
 
-//   let name = e.target.name.value
-//   let email = e.target.email.value
-//   let phone = e.target.phone.value
-
-//   console.log(name, email, phone)
-//   // pizzaOrderForm.remove()

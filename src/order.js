@@ -119,13 +119,33 @@ class Order {
  
     pizzaOrderForm.addEventListener('submit', (e)=> {
       e.preventDefault();
+      debugger
     const orderObj= {
+      
       name: e.target.name.value,
       email: e.target.email.value,
       phone: e.target.phone.value,
       comments: e.target.comments.value,
-      pizza_ids: Order.all
+      pizza_ids: Order.all,
+      sub_total: this.sub_total,
+      tax: this.tax,
+      total: this.total
+
   }
+  fetch("http://localhost:3000/api/v1/orders", {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(orderObj),
+  })
+  .then(resp=> resp.json())
+  .then(data => {
+    console.log('Success is sweet', data)
+  })
+  .catch((error)=> {
+    console.log('Error', error)
+  })
   console.log(orderObj)
   //create a new order object with the name, email, phone, and contents of pizza_ids array then you can send the post request to the database- call OrderService.something here...
   pizzaOrderForm.remove()

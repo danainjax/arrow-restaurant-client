@@ -7,7 +7,7 @@ class Pizza {
     this.description = pizza.description;
     this.image_url = pizza.image_url;
     this.price = pizza.price;
-    this.quantity = 0;
+    this.quantity = pizza.quantity;
     Pizza.all.push(this);
   }
 
@@ -36,15 +36,13 @@ class Pizza {
       
 
     pizzaMenu.innerHTML += pizzaCard;
-   
+  
     const orderBttns = document.querySelectorAll("#order");
 
     orderBttns.forEach((btn) =>
-      btn.addEventListener("click", Order.buttonHandler)
+      btn.addEventListener("click", Order.addPizzaToCart)
     );
-    
-
-   
-  }
+  } 
+  
 }
 

@@ -4,7 +4,7 @@ class Order {
     this.name = order.name;
     this.email = order.email;
     this.phone = order.phone;
-    this.pizza_ids = order.pizza_ids;
+    this.pizza_ids = [];
     this.pizzas = order.pizzas;
     this.order_items = [];
     this.sub_total = this.addSubTotal();
@@ -119,25 +119,18 @@ class Order {
  
     pizzaOrderForm.addEventListener('submit', (e)=> {
       e.preventDefault();
-
-    let name = e.target.name.value
-    let email = e.target.email.value
-    let phone = e.target.phone.value
-    let comments = e.target.comments.value
-
-  console.log(name, email, phone, comments)
+    const orderObj= {
+      name: e.target.name.value,
+      email: e.target.email.value,
+      phone: e.target.phone.value,
+      comments: e.target.comments.value,
+      pizza_ids: Order.all
+  }
+  console.log(orderObj)
   //create a new order object with the name, email, phone, and contents of pizza_ids array then you can send the post request to the database- call OrderService.something here...
   pizzaOrderForm.remove()
   //show order received message
-  
+
     })
-    
   }
-
- 
-
- 
-  
 }
-
-

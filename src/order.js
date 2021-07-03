@@ -130,33 +130,12 @@ class Order {
     // pizzaOrderForm.remove()
     
    })
-   
-    
+
   }
 
-     
-  
-    
-    // 
-  
-  
-    
-  
   
 }
 
 
-class Student{
-  static all = []
 
-  sayHello() { //instance method
-    const name = "aysan"
-    name = "Dana"
-  }
-
-  static classMethod(){ //class Method 
-
-  }
-
-}
 

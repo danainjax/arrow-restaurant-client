@@ -102,9 +102,9 @@ class Order {
                 <p>
                 </p>
                 <h3> Pizzas added to order </h3>
-                
+                 
                 <p> Show the pizza ordered here </p>
-               
+                
                 <p>Comments:</br></p>
                 <input type="textarea" name="comments"></textarea>
                 <p></p>
@@ -130,7 +130,7 @@ class Order {
       sub_total: this.sub_total,
       tax: this.tax,
       total: this.total,
-      comments: this.comments
+      
 
   }
   console.log(Order.all)

@@ -1,12 +1,12 @@
 class Order {
   static all = [];
+  
   constructor(order) {
     this.name = order.name;
     this.email = order.email;
     this.phone = order.phone;
-    this.pizza_ids = [];
+    this.pizza_ids = order.pizza_ids
     this.pizzas = order.pizzas;
-    this.order_items = [];
     this.sub_total = this.addSubTotal();
     this.tax = this.computeTax();
     this.total = this.totalPrice();
@@ -119,19 +119,24 @@ class Order {
  
     pizzaOrderForm.addEventListener('submit', (e)=> {
       e.preventDefault();
-      debugger
+    
     const orderObj= {
       
       name: e.target.name.value,
       email: e.target.email.value,
       phone: e.target.phone.value,
       comments: e.target.comments.value,
-      pizza_ids: Order.all,
+      pizza_ids: Order.all.map(order=> parseInt(order)),
       sub_total: this.sub_total,
       tax: this.tax,
-      total: this.total
+      total: this.total,
+      comments: this.comments
 
   }
+  console.log(Order.all)
+  console.log(orderObj.pizza_ids)
+  
+  console.log(orderObj)
   fetch("http://localhost:3000/api/v1/orders", {
     method: 'POST',
     headers: {
@@ -139,9 +144,9 @@ class Order {
     },
     body: JSON.stringify(orderObj),
   })
-  .then(resp=> resp.json())
+  .then(resp=> console.log(resp.json()))
   .then(data => {
-    console.log('Success is sweet', data)
+    console.log('You sent the order info to the backend, you pizza maker, you!', data)
   })
   .catch((error)=> {
     console.log('Error', error)
@@ -149,6 +154,8 @@ class Order {
   console.log(orderObj)
   //create a new order object with the name, email, phone, and contents of pizza_ids array then you can send the post request to the database- call OrderService.something here...
   pizzaOrderForm.remove()
+  // orderService
+  // orderService.fetchAndLoadOrders()
   //show order received message
 
     })

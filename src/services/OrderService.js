@@ -6,7 +6,7 @@ class OrderService {
   fetchAndLoadOrders() {
     this.getOrders().then((orders) => {
       console.log(orders.data)
-      orders.data.forEach((order)=> {
+      orders.data.forEach((order)=> { console.log(order.attributes)
         let o = new Order(order.attributes)
         o.render()
       })

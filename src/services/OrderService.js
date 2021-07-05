@@ -8,7 +8,7 @@ class OrderService {
       console.log(orders.data)
       orders.data.forEach((order)=> { console.log(order.attributes)
         let o = new Order(order.attributes)
-        o.render()
+        o.render
       })
       // orders.forEach((order) => {
       //   let o = new Order(order);

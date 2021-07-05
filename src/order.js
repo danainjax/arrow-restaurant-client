@@ -39,9 +39,14 @@ class Order {
   }
 
   render() {
-    console.log(this);
+    let pizza_orders = this.pizzas
+    
+      pizza_orders.forEach(order=> console.log(order.name));
+        
+      }
+    
     //write the code to create an element to display the order and add to the DOM
-  }
+  
 
   static addPizzaToCart(event) {
     let cart = document.createElement('div');
@@ -74,9 +79,11 @@ class Order {
     document.body.append(cart);
 
     const pizza_id = event.target.dataset.id;
+    const div_card = event.target.parentElement.parentElement
     const cardContainer = document.getElementById("card-container");
     let card = document.createElement("card");
-    card.innerHTML += `<h1>${pizza_id}</h1>`;
+    card.innerHTML += `<h1>${pizza_id}</h1>
+    <h1>${div_card.getElementsByTagName('h5')[0].innerText}</h1>`;
     cardContainer.appendChild(card);
     Order.all.push(pizza_id);
     const readyToPlaceOrder = document.getElementById("ready-to-place-order");
@@ -154,10 +161,40 @@ class Order {
   console.log(orderObj)
   //create a new order object with the name, email, phone, and contents of pizza_ids array then you can send the post request to the database- call OrderService.something here...
   pizzaOrderForm.remove()
-  // orderService
-  // orderService.fetchAndLoadOrders()
-  //show order received message
-
+ 
+  const orderService = new OrderService();
+ 
+  let p = document.createElement('p')
+  orderService.fetchAndLoadOrders();
+  
+  p.innerText = `Order received ${this.pizzas}`
+  
+  console.log(p)
+  document.body.append(p)
     })
   }
+
+  // render() {
+  //   const orderContainer = document.getElementById("order-container");
+  //   let orderCard = 
+  //         `
+  //           <div class="col mb-6">
+  //               <div class="card">
+                    
+  //                   <div class="card-body">
+  //                       <h5 data-id="${this.name}" class="card-title">${this.email}</h5>
+  //                       <p class="card-text">${this.phone}</p>
+  //                   </div>
+  //                   <div class="card-footer">
+  //                       <small class="text-muted">${this.pizzas}</small>
+                        
+                       
+  //                   </div>
+  //                </div>   
+  //           </div>
+  //       </div>`
+      
+
+  //   orderContainer.innerHTML += orderCard;
+  // }
 }

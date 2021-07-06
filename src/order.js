@@ -39,9 +39,10 @@ class Order {
   }
 
   render() {
+    debugger
     let pizza_orders = this.pizzas
     
-      pizza_orders.forEach(order=> console.log(order.name));
+      pizza_orders.forEach(order=> console.log(order.name, order.sub_total));
         
       }
     
@@ -50,6 +51,7 @@ class Order {
 
   static addPizzaToCart(event) {
     let cart = document.createElement('div');
+  
     cart.id = "cart";
     cart.innerHTML = `<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -77,13 +79,18 @@ class Order {
       </div>`;
 
     document.body.append(cart);
-
+    const pizzas = Pizza.all;
     const pizza_id = event.target.dataset.id;
+    let current_pizza = (pizzas.find(pizza=> pizza.id == pizza_id))
+    console.log(current_pizza.name, current_pizza.description, current_pizza.price)
+    
+    console.log(pizza_id)
+    
     const div_card = event.target.parentElement.parentElement
     const cardContainer = document.getElementById("card-container");
     let card = document.createElement("card");
-    card.innerHTML += `<h1>${pizza_id}</h1>
-    <h1>${div_card.getElementsByTagName('h5')[0].innerText}</h1>`;
+    card.innerHTML += `<h1>${current_pizza.name}-${current_pizza.price}</h1>`;
+    // <h1>${div_card.getElementsByTagName('h5')[0].innerText}</h1>`;
     cardContainer.appendChild(card);
     Order.all.push(pizza_id);
     const readyToPlaceOrder = document.getElementById("ready-to-place-order");
@@ -166,8 +173,9 @@ class Order {
  
   let p = document.createElement('p')
   orderService.fetchAndLoadOrders();
+  console.log(orderObj)
   
-  p.innerText = `Order received ${this.pizzas}`
+  p.innerText = `Order received ${orderObj.name}, ${orderObj.email}, ${orderObj.phone}, ${orderObj.comments}`
   
   console.log(p)
   document.body.append(p)

@@ -1,7 +1,7 @@
 class Pizza {
   static all = [];
+
   constructor(pizza) {
-    
     this.id = pizza.id;
     this.name = pizza.name;
     this.description = pizza.description;
@@ -11,9 +11,7 @@ class Pizza {
     Pizza.all.push(this);
   }
 
-  
-  render() {
-    const pizzaMenu = document.getElementById("pizza-menu");
+  pizzaCardHtml() {
     let pizzaCard = 
           `
             <div class="col mb-6">
@@ -33,16 +31,17 @@ class Pizza {
                  </div>   
             </div>
         </div>`
-      
-
-    pizzaMenu.innerHTML += pizzaCard;
-  
-    const orderBttns = document.querySelectorAll("#order");
-
-    orderBttns.forEach((btn) =>
-      btn.addEventListener("click", Order.addPizzaToCart)
-    );
+        return pizzaCard
   } 
+
+  appendToDom() {
+    const pizzaMenu = document.getElementById("pizza-menu");
+    pizzaMenu.innerHTML += this.pizzaCardHtml()
+    Order.orderButtonEvents()
+  }
+
+ 
   
 }
+
 

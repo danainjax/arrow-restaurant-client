@@ -7,7 +7,7 @@ class PizzaService {
     this.getPizzas().then((pizzas) => {
       pizzas.forEach((pizza) => {
         let p = new Pizza(pizza);
-        p.render();
+        p.appendToDom();
       });
     });
   }

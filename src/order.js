@@ -5,12 +5,13 @@ class Order {
     this.name = order.name;
     this.email = order.email;
     this.phone = order.phone;
-    this.pizza_ids = order.pizza_ids
+    this.pizza_ids = [];
     this.pizzas = order.pizzas;
     this.sub_total = this.addSubTotal();
     this.tax = this.computeTax();
     this.total = this.totalPrice();
-    this.comments = order.comments
+    this.comments = order.comments;
+    Order.all.push(this)
   }
 
   addSubTotal() {
@@ -38,22 +39,19 @@ class Order {
     }
   }
 
-  render() {
-    debugger
-    let pizza_orders = this.pizzas
-    
-      pizza_orders.forEach(order=> console.log(order.name, order.sub_total));
-        
-      }
-    
-    //write the code to create an element to display the order and add to the DOM
-  
+  orderedPizzas() {
+    //Show ordered pizzas that were just created
+    this.pizzas.forEach(order=> console.log(order.name, order.sub_total)); 
+  } 
 
-  static addPizzaToCart(event) {
-    let cart = document.createElement('div');
-  
-    cart.id = "cart";
-    cart.innerHTML = `<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  render() {
+    
+  }
+
+   
+    //write the code to create an element to display the order and add to the DOM
+cartModal() {
+  let cartModalHtml = `<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
@@ -76,27 +74,41 @@ class Order {
             </div>
           </div>
         </div>
-      </div>`;
+      </div>`
+      return cartModalHtml
+}
 
+ static orderButtonEvents() {
+  const orderBttns = document.querySelectorAll("#order");
+
+  orderBttns.forEach((btn) =>
+    btn.addEventListener("click", this.handleOrderClick)
+  );
+}
+
+static handleOrderClick() {
+//determine if cart has been created or not- conditional, if cart not found run create cart and add pizza to cart
+}
+
+ static createCart() {
+    let cart = document.createElement('div');
+    cart.id = "cart";
+    cart.innerHTML = this.cartModal();
     document.body.append(cart);
-    const pizzas = Pizza.all;
-    const pizza_id = event.target.dataset.id;
-    let current_pizza = (pizzas.find(pizza=> pizza.id == pizza_id))
-    console.log(current_pizza.name, current_pizza.description, current_pizza.price)
-    
-    console.log(pizza_id)
-    
-    const div_card = event.target.parentElement.parentElement
-    const cardContainer = document.getElementById("card-container");
-    let card = document.createElement("card");
-    card.innerHTML += `<h1>${current_pizza.name}-${current_pizza.price}</h1>`;
-    // <h1>${div_card.getElementsByTagName('h5')[0].innerText}</h1>`;
-    cardContainer.appendChild(card);
-    Order.all.push(pizza_id);
-    const readyToPlaceOrder = document.getElementById("ready-to-place-order");
-    readyToPlaceOrder.addEventListener('click', Order.renderOrderForm)
-    
-  }
+ }
+
+ addPizzaToCart() {
+  const pizza_id = event.target.dataset.id;
+  let current_pizza = (Pizza.all.find(pizza=> pizza.id == pizza_id))
+  const div_card = event.target.parentElement.parentElement
+  const cardContainer = document.getElementById("card-container");
+  let card = document.createElement("card");
+  card.innerHTML += `<h1>${current_pizza.name}-${current_pizza.price}</h1>`;
+  cardContainer.appendChild(card);
+  Order.all.push(pizza_id);
+  const readyToPlaceOrder = document.getElementById("ready-to-place-order");
+  readyToPlaceOrder.addEventListener('click', Order.renderOrderForm)
+ }
 
    static renderOrderForm() {
     cart.innerHTML = " "
@@ -134,38 +146,8 @@ class Order {
     pizzaOrderForm.addEventListener('submit', (e)=> {
       e.preventDefault();
     
-    const orderObj= {
-      
-      name: e.target.name.value,
-      email: e.target.email.value,
-      phone: e.target.phone.value,
-      comments: e.target.comments.value,
-      pizza_ids: Order.all.map(order=> parseInt(order)),
-      sub_total: this.sub_total,
-      tax: this.tax,
-      total: this.total,
-      
-
-  }
-  console.log(Order.all)
-  console.log(orderObj.pizza_ids)
+    
   
-  console.log(orderObj)
-  fetch("http://localhost:3000/api/v1/orders", {
-    method: 'POST',
-    headers: {
-        'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(orderObj),
-  })
-  .then(resp=> console.log(resp.json()))
-  .then(data => {
-    console.log('You sent the order info to the backend, you pizza maker, you!', data)
-  })
-  .catch((error)=> {
-    console.log('Error', error)
-  })
-  console.log(orderObj)
   //create a new order object with the name, email, phone, and contents of pizza_ids array then you can send the post request to the database- call OrderService.something here...
   pizzaOrderForm.remove()
  

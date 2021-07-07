@@ -164,7 +164,7 @@ static handleOrderClick(event) {
   orderService.postOrder();
   
   p.innerText = `Order received ${OrderService.orderObj.name}, ${orderObj.email}, ${orderObj.phone}, ${orderObj.comments}`
-  
+  //now implement a fetch for the individual order by its id and display its properties/attributes to the dom
   console.log(p)
   document.body.append(p)
     })

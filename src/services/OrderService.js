@@ -15,15 +15,18 @@ class OrderService {
       tax: this.tax,
       total: this.total,
     }
+    return orderObj
+    console.log(orderObj)
   }
 
-  postOrder() {
+  postOrder(orderObj) {
+    console.log(orderObj)
     return fetch("http://localhost:3000/api/v1/orders", {
       method: 'POST',
       headers: {
           'Content-Type': 'application/json',
       },
-      body: JSON.stringify(this.orderObj),
+      body: JSON.stringify(orderObj),
     })
     .then(resp=> console.log(resp.json()))
     .then(data => {

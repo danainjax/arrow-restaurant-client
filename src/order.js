@@ -74,40 +74,39 @@ static cartModal() {
       
 }
 
- static orderButtonEvents(event) {
+ static orderButtonEvents() {
    console.log('we are in the orderButtonEvents function')
   const orderBttns = document.querySelectorAll("#order");
 
-  orderBttns.forEach((btn) =>
-    btn.addEventListener("click", Order.handleOrderClick)
-  );
-  console.log(event)
-  // const pizza_id = event.target.dataset.id;
-  // console.log(pizza_id)
-}
+    orderBttns.forEach((btn) => {
+      console.log(btn)
+      btn.addEventListener("click", Order.handleOrderClick)
+    })
+ }
 
-static handleOrderClick() {
+static handleOrderClick(event) {
   console.log('we are in handleClick')
-  Order.createCart()
+  //create new pizza_order obj when the button is clicked
+  //new PizzaOrder()
+  const pizza_id = event.target.dataset.id;
+  console.log(pizza_id)
+  Order.createCart(pizza_id)
 //determine if cart has been created or not- conditional, if cart not found run create cart and add pizza to cart
 }
 
- static createCart() {
+ static createCart(pizza_id) {
    console.log('we are in createCart')
+   console.log(pizza_id)
     let cart = document.createElement('div');
     cart.id = "cart";
-    cart.innerHTML = Order.cartModal;
+    cart.innerHTML = Order.cartModal();
     console.log(cart)
     document.body.append(cart);
-    this.addPizzaToCart();
+    this.addPizzaToCart(pizza_id);
  }
 
- static addPizzaToCart(event) {
-  console.log('we are in addPizzaToCart')
-  const pizza_id = event.target.dataset.id;
-  console.log(pizza_id)
+ static addPizzaToCart(pizza_id) {
   let current_pizza = (Pizza.all.find(pizza=> pizza.id == pizza_id))
-  const div_card = event.target.parentElement.parentElement
   const cardContainer = document.getElementById("card-container");
   let card = document.createElement("card");
   card.innerHTML += `<h1>${current_pizza.name}-${current_pizza.price}</h1>`;

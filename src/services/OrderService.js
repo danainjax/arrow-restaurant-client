@@ -13,13 +13,16 @@ class OrderService {
       sub_total: this.sub_total,
       tax: this.tax,
       total: this.total,
+    }
   }
-    fetch("http://localhost:3000/api/v1/orders", {
+
+  postOrder() {
+    return fetch("http://localhost:3000/api/v1/orders", {
       method: 'POST',
       headers: {
           'Content-Type': 'application/json',
       },
-      body: JSON.stringify(orderObj),
+      body: JSON.stringify(this.orderObj),
     })
     .then(resp=> console.log(resp.json()))
     .then(data => {
@@ -29,8 +32,17 @@ class OrderService {
       console.log('Error', error)
     })
   }
+
+  getOrders() {
+    return fetch(this.endpoint).then((res) => (res.json()))
+    .then(orders => { 
+      console.log(orders)
+      //returns an Array of orders from the database
+      })
+  }
   
 
-
-
-} 
+}
+  
+   
+  

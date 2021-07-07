@@ -1,6 +1,6 @@
 class Order {
   static all = [];
-  
+  static cart = [];
   constructor(order) {
     this.name = order.name;
     this.email = order.email;
@@ -44,9 +44,9 @@ class Order {
     this.pizzas.forEach(order=> console.log(order.name, order.sub_total)); 
   } 
 
-  render() {
+  // render() {
     
-  }
+  // }
 
    
     //write the code to create an element to display the order and add to the DOM
@@ -87,6 +87,7 @@ cartModal() {
 }
 
 static handleOrderClick() {
+  Order.createCart
 //determine if cart has been created or not- conditional, if cart not found run create cart and add pizza to cart
 }
 
@@ -97,7 +98,7 @@ static handleOrderClick() {
     document.body.append(cart);
  }
 
- addPizzaToCart() {
+ addPizzaToCart(event) {
   const pizza_id = event.target.dataset.id;
   let current_pizza = (Pizza.all.find(pizza=> pizza.id == pizza_id))
   const div_card = event.target.parentElement.parentElement
@@ -105,7 +106,7 @@ static handleOrderClick() {
   let card = document.createElement("card");
   card.innerHTML += `<h1>${current_pizza.name}-${current_pizza.price}</h1>`;
   cardContainer.appendChild(card);
-  Order.all.push(pizza_id);
+  Order.cart.push(pizza_id);
   const readyToPlaceOrder = document.getElementById("ready-to-place-order");
   readyToPlaceOrder.addEventListener('click', Order.renderOrderForm)
  }
@@ -154,7 +155,7 @@ static handleOrderClick() {
   const orderService = new OrderService();
  
   let p = document.createElement('p')
-  orderService.fetchAndLoadOrders();
+  orderService;
   console.log(orderObj)
   
   p.innerText = `Order received ${orderObj.name}, ${orderObj.email}, ${orderObj.phone}, ${orderObj.comments}`

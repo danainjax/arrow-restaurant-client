@@ -3,13 +3,14 @@ class OrderService {
     this.endpoint = `${baseURL}/orders`
   }
 
-  createOrder() {
+  createOrder(e) {
     const orderObj= {
+      //console log and check the values here, they are not getting captured correctly
       name: e.target.name.value,
       email: e.target.email.value,
       phone: e.target.phone.value,
       comments: e.target.comments.value,
-      pizza_ids: Order.all.map(order=> parseInt(order)),
+      pizza_ids: Order.cart.map(cart=> parseInt(cart)),
       sub_total: this.sub_total,
       tax: this.tax,
       total: this.total,

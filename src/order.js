@@ -151,7 +151,7 @@ static handleOrderClick(event) {
  
     pizzaOrderForm.addEventListener('submit', (e)=> {
       e.preventDefault();
-    
+     
     
   
   //create a new order object with the name, email, phone, and contents of pizza_ids array then you can send the post request to the database- call OrderService.something here...
@@ -160,10 +160,10 @@ static handleOrderClick(event) {
   const orderService = new OrderService();
  
   let p = document.createElement('p')
-  orderService;
-  console.log(orderObj)
+  orderService.createOrder(e);
+  orderService.postOrder();
   
-  p.innerText = `Order received ${orderObj.name}, ${orderObj.email}, ${orderObj.phone}, ${orderObj.comments}`
+  p.innerText = `Order received ${OrderService.orderObj.name}, ${orderObj.email}, ${orderObj.phone}, ${orderObj.comments}`
   
   console.log(p)
   document.body.append(p)

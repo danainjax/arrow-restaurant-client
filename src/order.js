@@ -44,13 +44,7 @@ class Order {
     this.pizzas.forEach(order=> console.log(order.name, order.sub_total)); 
   } 
 
-  // render() {
-    
-  // }
-
-   
-    //write the code to create an element to display the order and add to the DOM
-cartModal() {
+static cartModal() {
   let cartModalHtml = `<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">
@@ -75,31 +69,43 @@ cartModal() {
           </div>
         </div>
       </div>`
+      console.log(cartModalHtml)
       return cartModalHtml
+      
 }
 
- static orderButtonEvents() {
+ static orderButtonEvents(event) {
+   console.log('we are in the orderButtonEvents function')
   const orderBttns = document.querySelectorAll("#order");
 
   orderBttns.forEach((btn) =>
-    btn.addEventListener("click", this.handleOrderClick)
+    btn.addEventListener("click", Order.handleOrderClick)
   );
+  console.log(event)
+  // const pizza_id = event.target.dataset.id;
+  // console.log(pizza_id)
 }
 
 static handleOrderClick() {
-  Order.createCart
+  console.log('we are in handleClick')
+  Order.createCart()
 //determine if cart has been created or not- conditional, if cart not found run create cart and add pizza to cart
 }
 
  static createCart() {
+   console.log('we are in createCart')
     let cart = document.createElement('div');
     cart.id = "cart";
-    cart.innerHTML = this.cartModal();
+    cart.innerHTML = Order.cartModal;
+    console.log(cart)
     document.body.append(cart);
+    this.addPizzaToCart();
  }
 
- addPizzaToCart(event) {
+ static addPizzaToCart(event) {
+  console.log('we are in addPizzaToCart')
   const pizza_id = event.target.dataset.id;
+  console.log(pizza_id)
   let current_pizza = (Pizza.all.find(pizza=> pizza.id == pizza_id))
   const div_card = event.target.parentElement.parentElement
   const cardContainer = document.getElementById("card-container");

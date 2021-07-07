@@ -37,7 +37,8 @@ class Pizza {
   appendToDom() {
     const pizzaMenu = document.getElementById("pizza-menu");
     pizzaMenu.innerHTML += this.pizzaCardHtml()
-    Order.orderButtonEvents()
+    Order.orderButtonEvents();
+    console.log('you appended to dom and called Order.orderButtonEvents')
   }
 
  
